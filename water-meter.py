@@ -18,7 +18,8 @@ class MyService(Service):
         self.logger.addHandler(rfh)
         self.logger.setLevel(logging.INFO)
         self.config = configparser.ConfigParser()
-        self.config.read('config.ini')
+        self.config.read('/usr/local/water-meter/config.ini')
+        self.logger.info('config', self.config);
 
         self.logger.info("initialized...")
 
@@ -26,10 +27,10 @@ class MyService(Service):
     def run(self):
         self.logger.info("run start");
         self.aio = Client(self.config['adafruit.io']['user'], self.config['adafruit.io']['api_key']) 
-        self.fc = FlowCounter(self.aio, float (1) / 450, 200, self.logger)
+        self.fc = FlowCounter(self.aio, float (1) / 374, 200, self.logger)
         while not self.got_sigterm():
             self.log_temp()
-            time.sleep(5)
+            time.sleep(30)
         self.logger.info("run done");
 
 
