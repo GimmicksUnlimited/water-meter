@@ -1,0 +1,12 @@
+[Unit]
+Description=water meter service
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/python3 /home/pi/water-meter/water-meter.py start
+ExecStop=/usr/bin/python3 /home/pi/water-meter/water-meter.py stop
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
