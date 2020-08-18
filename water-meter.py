@@ -44,7 +44,7 @@ class MyService(Service):
             self.aio.send('water-meter', tempC)
 
         except:
-            self.logger.err("Problem reading a thermal file")
+            self.logger.error("Problem reading a thermal file")
 
 
 if __name__ == '__main__':
